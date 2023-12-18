@@ -26,7 +26,7 @@ app.get("/payments/create", async (req, res) => {
 			amount: total,//subu_nits of the currency
 			currency: 'usd'
 		})
-		res.status(201).send({clientSecret:paymentIntent.client_secret})
+		res.status(200).send({clientSecret:paymentIntent.client_secret})
 	} catch (error) {
 		console.log(error.message);
 	}
