@@ -23,12 +23,13 @@ app.get("/payments/create", async (req, res) => {
 	console.log(`Payment request received ${total/100}`); 
 	try {
 		const paymentIntent = await stripe.paymentIntents.create({
-			amount: total,//subu_nits of the currency
+			amount: parseInt(total),//subu_nits of the currency
 			currency: 'usd'
 		})
 		res.status(200).send({clientSecret:paymentIntent.client_secret})
 	} catch (error) {
 		console.log(error.message);
+		res.status(500).send(error.message)
 	}
 });
 
